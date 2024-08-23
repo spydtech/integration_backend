@@ -1,5 +1,5 @@
 # Use an official Maven image to build the project
-FROM maven:3.8.8-openjdk-17-slim AS build
+FROM maven:3.8.8-eclipse-temurin-17-slim AS build
 WORKDIR /app
 
 # Copy the pom.xml and download dependencies
@@ -11,7 +11,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Use a lightweight OpenJDK image to run the application
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-slim
 WORKDIR /app
 
 # Copy the built JAR from the previous stage
